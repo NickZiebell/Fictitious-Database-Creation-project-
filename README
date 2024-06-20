@@ -1,0 +1,7 @@
+This project was the creation of a fictitious database using different methods
+
+It began by outlining the organization doing things such as constructing a ER diagram as well as a relational schema
+
+Next it was constructing the DDL/DML and creating data to fill in the tables so thar we would have a database that effective queries could be ran on
+
+Lastly it was reconstructed using a python ORM script utilizing the sqlalchemy library again to the point we can also run effective queries
