@@ -1,0 +1,107 @@
+CREATE TABLE Department (
+D_ID INT PRIMARY KEY,
+D_Name VARCHAR(255),
+D_Location VARCHAR(255)
+);
+CREATE TABLE Employee (
+E_ID INT PRIMARY KEY,
+E_Pos VARCHAR(255),
+E_First VARCHAR(255),
+E_Last VARCHAR(255),
+E_St VARCHAR(255),
+E_City VARCHAR(255),
+E_State VARCHAR(2),
+E_Zip VARCHAR(10),
+D_ID INT,
+FOREIGN KEY (D_ID) REFERENCES Department(D_ID)
+);
+CREATE TABLE Project (
+P_ID INT PRIMARY KEY,
+P_Name VARCHAR(100),
+P_Start DATE,
+P_End DATE,
+D_ID INT
+);
+CREATE TABLE Databases (
+DB_ID VARCHAR(10) PRIMARY KEY,
+DB_Faculty INT,
+DB_Students INT,
+DB_Alumni INT
+);
+CREATE TABLE Customer (
+C_Email VARCHAR(255) PRIMARY KEY,
+C_Number VARCHAR(20),
+C_Last VARCHAR(50),
+C_First VARCHAR(50)
+);
+CREATE TABLE Calls (
+E_ID INT,
+C_Email VARCHAR(255),
+FOREIGN KEY (E_ID) REFERENCES Employee(E_ID),
+FOREIGN KEY (C_EMAIL) REFERENCES Customer(C_Email)
+);
+CREATE TABLE WorksOn (
+E_ID INT,
+P_ID INT,
+FOREIGN KEY (E_ID) REFERENCES Employee(E_ID),
+FOREIGN KEY (P_ID) REFERENCES Project(P_ID)
+);
+CREATE TABLE Utilizes (
+P_ID INT,
+DB_ID VARCHAR(10),
+FOREIGN KEY (P_ID) REFERENCES Project(P_ID),
+FOREIGN KEY (DB_ID) REFERENCES Databases(DB_ID)
+);
+INSERT INTO Department (D_ID, D_Name, D_Location) VALUES
+(1, 'IT', 'Building A'),
+(2, 'HR', 'Building B'),
+(3, 'Finance', 'Building C');
+INSERT INTO Employee (E_ID, E_Pos, E_First, E_Last, E_St, E_City, E_State, E_Zip, D_ID) VALUES
+(1, 'Manager', 'John', 'Doe', '123 Maple St.', 'Springfield', 'IL', '62704', 1),
+(2, 'Analyst', 'Jane', 'Smith', '456 Oak St.', 'Decatur', 'IL', '62521', 2),
+(3, 'Developer', 'Mike', 'Brown', '789 Pine St.', 'Champaign', 'IL', '61820', 3),
+(4, 'Designer', 'Emily', 'Turner', '234 Elm St.', 'Bloomington', 'IL', '61701', 1),
+(5, 'HR Consultant', 'Brian', 'Lee', '567 Birch St.', 'Normal', 'IL', '61761', 2),
+(6, 'Accountant', 'Sarah', 'Miller', '890 Cedar St.', 'Peoria', 'IL', '61602', 3);
+INSERT INTO Project (P_ID, P_Name, P_Start, P_End, D_ID) VALUES
+(104, 'Website Redesign', '2023-04-01', '2023-10-31', 1),
+(105, 'Employee Wellness Program', '2023-05-01', '2023-08-30', 2),
+(106, 'Fiscal Year Report', '2023-06-01', '2023-12-15', 3);
+INSERT INTO Databases (DB_ID, DB_Faculty, DB_Students, DB_Alumni) VALUES
+('DB4', 25, 250, 1750),
+('DB5', 12, 165, 850),
+('DB6', 18, 220, 1100);
+INSERT INTO Customer (C_Email, C_Number, C_Last, C_First) VALUES
+('ladams@luc.edu', '555-123-4567', 'Adams', 'Lucy'),
+('jbaker@luc.edu', '555-987-6543', 'Baker', 'Justin'),
+('ccarter@luc.edu', '555-456-7890', 'Calvin', 'Carter'),
+('ldavenpo@luc.edu', '555-321-0987', 'Laila', 'Davenport'),
+('hjackson@gmail.com', '843-876-5432', 'Hailey', 'Jackson'),
+('ldunlap@gmail.com', '965-234-5678', 'Lincoln', 'Dunlap'),
+('dfranklin@luc.edu', '555-890-1234', 'Devin', 'Franklin'),
+('epilsner@luc.edu', '555-678-9012', 'Eric', 'Pilsner'),
+('dwright@luc.edu', '555-543-2109', 'David', 'Wright'),
+('efisher@luc.edu', '555-876-5432', 'Edna', 'Fisher');
+INSERT INTO Calls (E_ID, C_Email) VALUES
+(1, 'ladams@luc.edu'),
+(5, 'jbaker@luc.edu'),
+(6, 'ccarter@luc.edu'),
+(4, 'ldavenpo@luc.edu'),
+(5, 'hjackson@gmail.com'),
+(1, 'ldunlap@gmail.com'),
+(4, 'dfranklin@luc.edu'),
+(1, 'epilsner@luc.edu'),
+(3, 'dwright@luc.edu'),
+(2, 'efisher@luc.edu');
+INSERT INTO WorksOn (E_ID, P_ID) VALUES
+(1, 106),
+(2, 105),
+(3, 104),
+(4, 104),
+(5, 105),
+(6, 106);
+INSERT INTO Utilizes (P_ID, DB_ID) VALUES
+(104, 'DB4'),
+(106, 'DB5'),
+(106, 'DB6');
+
