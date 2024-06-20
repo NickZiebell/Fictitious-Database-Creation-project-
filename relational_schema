@@ -1,0 +1,26 @@
+Relational Schema
+
+Employee (E_ID, E_Pos, E_First, E_Last, E_St, E_City, E_State, E_Zip)
+Foreign key (D_ID) references Department (D_ID)
+
+Customer (C_Email, C_Number, C_Last, C_First)
+
+Department (D_ID, D_Name, D_Location)
+
+Project (P_ID, P_Name, P_Start, P_End)
+Foreign key (D_ID) references Department (D_ID)
+
+Databases (DB_ID, DB_Faculty, DB Students, DB Alumni)
+
+Calls (E_ID, C_Email)
+Foreign key(E_ID) references employee (E_ID)
+Foreign key(C_Email) references customer (C_Email)
+
+Utilizes (P_ID, DB_ID)
+Foreign key (P_ID) references project (P_ID)
+Foreign key (DB_ID) references Databases (DB_ID)
+
+Works on (E_ID, P_ID)
+Foreign key (E_ID) references employee (E_ID)
+Foreign key (P_ID) references project (P_ID
+
